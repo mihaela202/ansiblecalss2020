@@ -1,0 +1,11 @@
+---
+- name: Selinux
+  hosts: localhost
+  become: yes 
+  become_method: sudo
+  hosts: all
+  tasks:
+- name: Set selinux permissive
+  selinux:
+    policy: targeted
+    state: permissive
