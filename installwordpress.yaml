@@ -1,17 +1,22 @@
 ---
-tasks:
-- name: Download and unzip wordpress
-  get_url: https://wordpress.org/latest.tar.gz 
-  dest: /tmp/
-- name: Unzip wordpress
-  unarchive: 
-    src: /tmp/wordpress-5.4.tar.gz
-    dest: /var/www/html/
-    remote_src: yes 
-- name: move files
-  shell: "mv /var/www/html/wordpress/*  /var/www/html/"
-  ignore_errors: yes 
+- name: Install Wordpress
   hosts: localhost
   become: yes 
   become_method: sudo
+  tasks:
+   - name: Download and unzip wordpress
+     get_url:
+       url: https://wordpress.org/latest.tar.gz 
+       dest: /tmp/
+   - name: Unzip wordpress
+     unarchive: 
+        src: /tmp/latest.tar.gz
+        dest: /var/www/html/
+        remote_src: yes 
+
+   - name: Move files to html folder
+     shell: "mv wordpress/*  /var/www/html"
+     become: yes
+     become_method: sudo
+     ignore_errors: yes
   
