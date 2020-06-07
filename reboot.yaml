@@ -1,9 +1,0 @@
----
-- name: Reboot Machine
-  become: yes 
-  become_method: sudo
-  user: centos
-  hosts: all
-  tasks:
-  - name: Reboot all web servers
-    command: /sbin/reboot
