@@ -1,0 +1,26 @@
+---
+- name: Installs  Packages
+  become: yes 
+  become_method: sudo
+  user: centos
+  hosts: all
+  tasks:
+  - name: Install Items
+    package:
+      name: "{{item}}"
+      state: present
+    with_items: 
+    - httpd
+    - epel-release 
+    - http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+    - php
+    - php-mysql
+    - mysql
+    - mariadb-server
+  - name: Delete Items
+    package:
+      name: "{{item}}"
+      state: absent
+    with_items:
+    - php
+    
