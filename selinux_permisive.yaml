@@ -1,5 +1,4 @@
 ---
-- name: Installs  Packages
   become: yes 
   become_method: sudo
   user: centos

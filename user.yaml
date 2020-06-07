@@ -1,15 +1,15 @@
-- name: Installs  Packages
+---
   become: yes 
   become_method: sudo
   user: centos
   hosts: all
   tasks:
-  - name: Install Items
+  - name: Install users
     package:
       name: "{{item}}"
       state: present
     with_items: 
-    - telnet
-    - gzip
-    - lftp
-    - httpd
+    - bob
+    - liza
+    - mike
+    - sara

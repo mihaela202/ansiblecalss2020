@@ -8,17 +8,16 @@
   - name: Install Items
     package:
       name: "{{item}}"
-      state: present
+      state: latest 
     with_items: 
     - httpd
     - epel-release 
     - http://rpms.remirepo.net/enterprise/remi-release-7.rpm
     - mysql
     - mariadb-server
-  - name: Delete Items
-    package:
-      name: "{{item}}"
-      state: absent
-    with_items:
+    - php-gd 
     - php
     - php-mysql
+    - wget
+  ignore_errors: yes
+

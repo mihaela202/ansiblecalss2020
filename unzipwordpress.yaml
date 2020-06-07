@@ -1,0 +1,11 @@
+---
+become: yes 
+become_method: sudo
+user: centos
+hosts: all
+tasks:
+- name: Unzip wordpress
+  unarchive: 
+    src: /tmp/latest.tar.gz
+    dest: /var/www/html/
+    remote_src: yes
