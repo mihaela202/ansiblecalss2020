@@ -1,0 +1,14 @@
+---
+- name: Installs  Packages
+  become: yes 
+  become_method: sudo
+  user: centos
+  hosts: all
+  tasks:
+  - name: Delete Items
+    package:
+      name: "{{item}}"
+      state: absent
+    with_items:
+    - php
+    - php-mysql
