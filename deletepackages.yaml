@@ -1,5 +1,5 @@
 ---
-- name: Installs  Packages
+- name: Delete  Packages
   become: yes 
   become_method: sudo
   user: centos
