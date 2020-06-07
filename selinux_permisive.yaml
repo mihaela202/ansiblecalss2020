@@ -1,11 +1,11 @@
 ---
-- name: Selinux
-  hosts: localhost
+- name: Installs  Packages
   become: yes 
   become_method: sudo
+  user: centos
   hosts: all
   tasks:
-- name: Set selinux permissive
-  selinux:
-    policy: targeted
-    state: permissive
+  - name: Put SELinux in permissive mode, logging actions that would be blocked.
+    selinux:
+      policy: targeted
+      state: permissive

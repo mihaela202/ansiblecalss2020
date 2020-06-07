@@ -1,0 +1,23 @@
+---
+- name: 
+  become: yes 
+  become_method: sudo
+  user: centos
+  hosts: all
+  tasks:
+  - name: Install wordpress
+   get_url:
+    url: http://wordpress.org/latest.tar.gz 
+
+    unarchive: latest.tar.gz
+  - name: Moving files 
+   fetch:
+      src: wordpress/*
+      dest: /var/www/html
+      flat: yes
+
+
+    loop to install packages:
+    - httpd
+    - telnet
+    - mysql
