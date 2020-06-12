@@ -16,6 +16,7 @@
     package:
       name: serverbackup-enterprise-agent
       state: present
+      totify: AGENT_INSTALLED_ON_CENTOS_6
 
   - name: Start agent
     when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "6")
@@ -23,7 +24,7 @@
       name: cdp-agent
       state: restarted
       enabled: yes 
-
+ 
   - name: Stop iptables
     when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "6")
     service: 
@@ -35,3 +36,10 @@
   - name: Get key
     when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "6")
     command: "r1soft-setup --get-key http://3.8.198.34:8080/"
+
+  handlers:
+   - name: AGENT_INSTALLED
+     service:
+       name: cdp-agent
+       state: restart
+       enabled: yes 
